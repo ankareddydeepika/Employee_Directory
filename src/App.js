@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import EmployeeCard from "./components/EmployeeCard";
+import Wrapper from "./components/Wrapper";
+import Title from "./components/Title";
+import employees from "./employees.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+class App extends Component{
+
+  state = {
+    employees
+  }
+
+  render(){
+    return(
+      <Wrapper>
+        <Title>Employee Directory</Title>
+        {this.state.employees.map(employee => (
+          <EmployeeCard
+          id={employee.id}
+          key={employee.id}
+          Firstname={employee.Firstname}
+          Lastname={employee.Lastname}
+          image={employee.image}
+          Role ={employee.Role}
+          email={employee.email}
+          />
+        ))}
+      </Wrapper>
+      
+    )
+  }
+};
+
+
 
 export default App;
