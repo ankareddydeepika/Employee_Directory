@@ -1,5 +1,6 @@
 import React from "react";
 import EmployeeCard from "../EmployeeCard";
+import Wrapper from "../Wrapper";
 class EmployeeSearch extends React.Component {
 renderEmployees = () => {
     if (this.props.employees.length > 0) {
@@ -12,16 +13,17 @@ renderEmployees = () => {
         })
       }
       return employees.map(employee => {
-        return <EmployeeCard employee={employee} employees={this.props.employees}
-          sort={this.props.sort}/>
+        return <EmployeeCard employee={employee} />
       })
     }
   }
 render() {
     return (
-      <div className="EmployeeSearch">
+       <div className="EmployeeSearch">
         {this.renderEmployees()}
       </div>
+        
+      
     )
   }
 }
