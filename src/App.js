@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import EmployeeCard from "./components/EmployeeCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import employees from "./employees.json";
 import Search from "./components/Search"
-import EmployeeSearch from "./components/EmployeeSearch"
+import EmployeeList from "./components/EmployeeList"
+import Sort from "./components/Sort"
 
 
 class App extends Component{
@@ -12,8 +12,24 @@ class App extends Component{
   state = {
     employees,
     filtered: false, //true
-    foundEmployee: null //deepika
+    foundEmployee: null, //deepika
+    sorted: false
   }
+
+  sortEmployees = () =>{
+ this.state.employees.sort((a,b) => {
+       if(this.state.sorted === true){
+        return a.Firstname.localeCompare(b.Firstname) 
+       }
+       else{
+         return b.Firstname.localeCompare(a.Firstname)
+       }
+     
+    })
+    this.setState({sorted: !this.state.sorted})
+  };
+
+
 
   filterEmployees = (input) => {
     console.log(input)
@@ -26,9 +42,9 @@ class App extends Component{
 
   renderEmployees() {
     console.log(this.state.foundEmployee)
-    return <EmployeeSearch employees={this.state.employees} 
+    return <EmployeeList employees={this.state.employees} 
     filtered={this.state.filtered} 
-    foundEmployee={this.state.foundEmployee}></EmployeeSearch>
+    foundEmployee={this.state.foundEmployee}></EmployeeList>
   }
 
   render(){
@@ -41,33 +57,19 @@ class App extends Component{
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12" id="title">
+                <div class="col-sm-12" id="search">
                 <Search filterEmployees={this.filterEmployees}/>
+                </div>
+                <div class="col-sm-12" id="sort">
+                <Sort sortEmployees={this.sortEmployees}/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12" id="title">
+                <div class="col-sm-12" id="render">
                 {this.renderEmployees()}
                 </div>
             </div>
         </div>
-        
-
-        {/* <Title>Employee Directory</Title> */}
-        {/* <Search filterEmployees={this.filterEmployees}/>
-        <br/> */}
-       
-        {/* {this.state.employees.map(employee => (
-          <EmployeeCard
-          id={employee.id}
-          key={employee.id}
-          Firstname={employee.Firstname}
-          Lastname={employee.Lastname}
-          image={employee.image}
-          Role ={employee.Role}
-          email={employee.email}
-          />
-        ))} */}
       </Wrapper>
       
     )

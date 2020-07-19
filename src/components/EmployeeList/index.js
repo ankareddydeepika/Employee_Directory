@@ -1,7 +1,6 @@
 import React from "react";
 import EmployeeCard from "../EmployeeCard";
-import Wrapper from "../Wrapper";
-class EmployeeSearch extends React.Component {
+class EmployeeList extends React.Component {
 renderEmployees = () => {
     if (this.props.employees.length > 0) {
       //no filter
@@ -19,7 +18,7 @@ renderEmployees = () => {
   }
 render() {
     return (
-       <div className="EmployeeSearch">
+       <div className="EmployeeList">
         {this.renderEmployees()}
       </div>
         
@@ -27,4 +26,4 @@ render() {
     )
   }
 }
-export default EmployeeSearch
+export default EmployeeList
